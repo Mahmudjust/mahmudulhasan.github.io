@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+
+<rect width="500" height="500" rx="250" fill="#5b8cff"/>
+
+<circle cx="250" cy="180" r="90" fill="white"/>
+
+<path d="M120 420
+C120 310 380 310 380 420"
+fill="white"/>
+
+</svg>
