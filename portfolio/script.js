@@ -395,3 +395,123 @@ console.log(
 "Built with HTML, CSS & JavaScript"
 
 );
+
+/* ==========================================
+   PART 5A
+========================================== */
+
+// Loader
+
+window.addEventListener("load",()=>{
+
+const loader=document.getElementById("loader");
+
+setTimeout(()=>{
+
+loader.style.opacity="0";
+
+loader.style.visibility="hidden";
+
+},800);
+
+});
+
+// Scroll Progress
+
+window.addEventListener("scroll",()=>{
+
+const winScroll=document.documentElement.scrollTop;
+
+const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+
+const scrolled=(winScroll/height)*100;
+
+document.getElementById("progress-bar").style.width=scrolled+"%";
+
+});
+
+// Back to top
+
+const topBtn=document.getElementById("topBtn");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>500){
+
+topBtn.style.display="block";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+});
+
+topBtn.onclick=()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+// Counter Animation
+
+const counters=document.querySelectorAll(".counter");
+
+let counterStarted=false;
+
+function runCounters(){
+
+const section=document.getElementById("stats");
+
+if(!section||counterStarted)return;
+
+const top=section.getBoundingClientRect().top;
+
+if(top<window.innerHeight-100){
+
+counterStarted=true;
+
+counters.forEach(counter=>{
+
+const target=+counter.dataset.target;
+
+let value=0;
+
+const speed=target/80;
+
+const update=()=>{
+
+value+=speed;
+
+if(value<target){
+
+counter.innerText=Math.floor(value);
+
+requestAnimationFrame(update);
+
+}else{
+
+counter.innerText=target;
+
+}
+
+};
+
+update();
+
+});
+
+}
+
+}
+
+window.addEventListener("scroll",runCounters);
+
+runCounters();
